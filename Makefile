@@ -2,6 +2,7 @@ PROJECT = python-tdd-playground
 
 .PHONY: test
 test: .venv
+	pipenv run mypy .
 	pipenv run pytest
 
 .PHONY: test-docker
@@ -15,7 +16,7 @@ docker-build: Pipfile.lock
 Pipfile.lock: Pipfile
 	pipenv lock
 	
-.venv:
+.venv: Pipfile.lock
 	PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 
 .PHONY: clean
