@@ -1,0 +1,4 @@
+[dev-packages]
+pytest = "*"
+
+[packages]
