@@ -6,8 +6,9 @@ test: .venv
 	pipenv run pytest
 
 .PHONY: test-docker
-test-docker: build
-	docker run --rm $(PROJECT) pytest --color yes
+test-docker: docker-build
+	docker run --rm -v $(PWD):/app $(PROJECT) mypy .
+	docker run --rm -v $(PWD):/app $(PROJECT) pytest --color yes
 
 .PHONY: docker-build
 docker-build: Pipfile.lock
